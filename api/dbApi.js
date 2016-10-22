@@ -79,7 +79,7 @@ function setUserSavedAds(userId, saved_ad, callback){
       else if (!user) callback(new Error("user not found"), null)
       else {
           const index = user.saved_ads.indexOf(saved_ad)
-          if (index == -1) {
+          if (index === -1) {
               models.User.findOneAndUpdate({id: userId}, {$push: {saved_ads: saved_ad}}, function(err, newUser) {
                   if (err) callback(err, null)
                   else callback(null, newUser)
@@ -97,14 +97,26 @@ function setUserSavedAds(userId, saved_ad, callback){
 /*
 * Set User's Favorite Tags by their Ids
 */
-function setUserFavTags(userId, fav_tags, callback){
+function setUserFavTags(userId, fav_tag, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
-  models.User.findOneAndUpdate({id: userId}, {$set: {fav_tags: fav_tags}}, function(err, result) {
-    if(err) callback(err, null);
-    else {
-        callback(null, result);
-    }
-  });
+  models.User.findOne({id: userId}, function(err, user) {
+      if(err) callback(err, null)
+      else if (!user) callback(new Error("user not found"), null)
+      else {
+          const index = user.fav_tags.indexOf(fav_tag)
+          if (index === -1) {
+              models.User.findOneAndUpdate({id: userId}, {$push: {fav_tags: fav_tag}}, function(err, newUser) {
+                  if (err) callback(err, null)
+                  else callback(null, newUser)
+              })
+          } else {
+              models.User.findOneAndUpdate({id: userId}, {$pull: {fav_tags: fav_tag}}, function(err, newUser) {
+                  if (err) callback(err, null)
+                  else callback(null, newUser)
+              })
+          }
+      }
+  })
 }
 
 /*

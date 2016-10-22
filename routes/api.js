@@ -115,11 +115,16 @@ router.post("/ads", (req, res, next) => {
 /*
 * saves a user's favorite tags through their user Id
 */
-router.post("/tags", (req, res) => {
-  if(req.body.user_id && req.body.fav_tags){
-    db.setUserFavTags(req.body.user_id, req.body.fav_tags, function(err, result){
-      if(err) res.end(err);
-      res.json(result);
+router.post("/tags", (req, res, next) => {
+  if(req.body.user_id && req.body.fav_tag){
+    db.setUserFavTags(req.body.user_id, req.body.fav_tag, function(err, result){
+      if(err) next(err);
+      else {
+          res.json({
+              success: true,
+              data: result
+          });
+      }
     });
   }
   else {
