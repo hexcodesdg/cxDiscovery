@@ -45,7 +45,7 @@ function getAdsByUserId(userId, limit, offset, callback){
 */
 function getAdsByTags(tags, limit, offset, callback){
   if(tags === null || offset === null || limit === null) callback(new Error('parameters cannot be null'), null);
-  models.Ad.find({tags: tags}).skip(offset).limit(limit).exec(function(err, result){
+  models.Ad.find({}).skip(offset).limit(limit).exec(function(err, result){
     if(err) callback(err, null);
     callback(null, result);
   });
