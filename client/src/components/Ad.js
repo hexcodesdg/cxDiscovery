@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card, CardMedia, CardTitle, CardActions, CardText} from 'material-ui/Card'
+import {Card, CardMedia, CardTitle, CardActions, CardText, CardHeader} from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
 import TurnedIn from 'material-ui/svg-icons/action/turned-in'
 import TurnedInNot from 'material-ui/svg-icons/action/turned-in-not'
@@ -16,16 +16,19 @@ export default class Ad extends Component {
         imageUrl: React.PropTypes.string.isRequired,
         title: React.PropTypes.string.isRequired,
         body: React.PropTypes.string.isRequired,
-        // toggleSaved: React.PropTypes.func.isRequired,
-        // isSaved: React.PropTypes.bool.isRequired
+        toggleSaved: React.PropTypes.func.isRequired,
+        isSaved: React.PropTypes.bool.isRequired
     }
 
     render() {
+        const imageStyle = {maxWidth: "600px", minWidth:"300px"}
+
         return (
             <Row is="center">
-                <Card>
+                <Card
+                    initiallyExpanded={true}>
                     <CardMedia>
-                        <img style={{maxWidth: "500px", minWidth:"300px"}} src={this.props.imageUrl}/>
+                        <img style={imageStyle} src={this.props.imageUrl}/>
                     </CardMedia>
                     <CardTitle title={this.props.title}/>
                     <CardText>

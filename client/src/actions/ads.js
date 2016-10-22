@@ -10,7 +10,6 @@ export function fetchAds() {
                 user_id: USER_ID
             }
         }).then(result => {
-            console.log(result)
             const ads = result.data.data
             return dispatch(setAds(ads))
         })
@@ -32,7 +31,13 @@ export function setSavedAds(ads) {
 }
 
 export function toggleAdSave(id) {
-    //perform http request
+    axios.post(API_URL + "/ads", {
+            user_id: 1,
+            saved_ad: id
+    }).then(result => {
+        console.log(result.data)
+        console.log("toggle propogated to server")
+    })
     return {
         type: TOGGLE_AD_SAVE,
         id: id
@@ -47,7 +52,6 @@ export function getUserInfo() {
             }
         }).then(result => {
             const data = result.data.data
-            console.log(data)
             dispatch(setSavedAds(data.saved_ads))
             dispatch(setFavTags(data.fav_tags))
         })
