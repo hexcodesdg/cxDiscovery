@@ -7,6 +7,8 @@ import Clear from 'material-ui/svg-icons/content/clear'
 import { toggleDrawer, toggleTagSelector } from '../actions/ui'
 import {Grid,Row} from 'react-inline-grid'
 import TagsList from './TagsList'
+import Paper from 'material-ui/Paper'
+import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 
 class Sidebar extends Component {
 
@@ -25,7 +27,7 @@ class Sidebar extends Component {
                     </Row>
                 </Grid>
                 <TagsList/>
-                <MenuItem primaryText="show more tags..." onClick={this.props.toggleTagSelector}/>
+                <MenuItem primaryText="show more tags" onClick={this.props.toggleTagSelector} rightIcon={<ArrowDown/>}/>
             </Drawer>
         )
     }

@@ -16,7 +16,7 @@ class TagsList extends Component {
                             this.props.toggleTag(tag)
                         }}
                         primaryText={tag}
-                        leftIcon={this.props.currentTags.indexOf(tag) !== -1 ?
+                        rightIcon={this.props.currentTags.indexOf(tag) !== -1 ?
                             <LocalOffer/> : null}/>
                 })}
             </div>
