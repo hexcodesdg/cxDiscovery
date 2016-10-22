@@ -126,6 +126,21 @@ function getAllTags(){
   return tagConstants;
 }
 
+/*
+* Creates new save record
+*/
+function postSaveRecord(userId, ad_id, cb) {
+    models.Save.create({
+        user_id: userId,
+        ad_id
+    }, (err, save) => {
+        if (err) cb(err, null)
+        else {
+            cb(null, save)
+        }
+    })
+}
+
 // Module exports
 module.exports.getAdsByUserId = getAdsByUserId;
 module.exports.getAdsByTags = getAdsByTags;
@@ -134,3 +149,4 @@ module.exports.getUserById = getUserById;
 module.exports.setUserSavedAds = setUserSavedAds;
 module.exports.setUserFavTags = setUserFavTags;
 module.exports.getAllTags = getAllTags;
+module.exports.postSaveRecord = postSaveRecord
