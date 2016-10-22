@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import Header from '../components/Header'
 
 export default class IndexContainer extends Component {
 
     render() {
         return (
             <div>
-                <h1>Index</h1>
+                <Header/>
             </div>
         )
     }
