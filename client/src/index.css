@@ -1,4 +1,12 @@
+@font-face {font-family: 'AktivGrotesk';
+  src:
+  url("./font/myFont.woff2") format("woff2"),
+  url("./font/myFont.woff") format("woff"),
+  url("./font/myFont.ttf") format("truetype")
+}
+
 body {
     margin: 0;
     background-color: #ebedec;
+    font-family: "AktivGrotesk";
 }

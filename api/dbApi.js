@@ -17,7 +17,7 @@ function postSaveRecord(userId, ad_id) {
 */
 function getAdsByUserId(userId, limit, offset, callback){
   let tags = [];
-  limit = limit ? limit : 10
+  limit = limit ? limit : 20
   offset = offset ? offset : 0
   if(userId === null) callback(new Error('userId cannot be null'), null);
   getUserById(userId, function(err, result){
@@ -26,11 +26,12 @@ function getAdsByUserId(userId, limit, offset, callback){
           callback(new Error("User not found"), null)
       } else {
           let query = {}
-          if (result.fav_tags.length > 0) {
-              query = {tags: {$in: result.fav_tags}}
-          }
-          console.log(query)
+        //   if (result.fav_tags.length > 0) {
+        //       query = {tags: {$in: result.fav_tags}}
+        //   }
+        //   console.log(query)
           models.Ad.find(query).skip(offset).limit(limit).exec(function(err, result){
+            console.log(result); 
             if(err) callback(err, null);
             else {
                 callback(null, result)
@@ -45,7 +46,7 @@ function getAdsByUserId(userId, limit, offset, callback){
 */
 function getAdsByTags(tags, limit, offset, callback){
   if(tags === null || offset === null || limit === null) callback(new Error('parameters cannot be null'), null);
-  models.Ad.find({tags: tags}).skip(offset).limit(limit).exec(function(err, result){
+  models.Ad.find({}).skip(offset).limit(limit).exec(function(err, result){
     if(err) callback(err, null);
     callback(null, result);
   });
