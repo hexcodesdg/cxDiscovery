@@ -16,15 +16,18 @@ class AdsList extends Component {
 
     render() {
         // filters out ads by currentTags
-        const renderedAds = this.props.ads.filter(ad => {
-            for (let i = 0; i < ad.tags.length; i++) {
-                const tag = ad.tags[i]
-                if (this.props.currentTags.indexOf(tag) !== -1) {
-                    return true
+        let renderedAds = this.props.ads
+        if (this.props.currentTags.length > 0) {
+            renderedAds = this.props.ads.filter(ad => {
+                for (let i = 0; i < ad.tags.length; i++) {
+                    const tag = ad.tags[i]
+                    if (this.props.currentTags.indexOf(tag) !== -1) {
+                        return true
+                    }
                 }
-            }
-            return false
-        })
+                return false
+            })
+        }
         // const renderedAds = this.props.ads
 
         return (
@@ -35,8 +38,9 @@ class AdsList extends Component {
                             key={ad._id}
                             title={ad.title}
                             body={ad.body.substring(0, 50)}
+                            tags={ad.tags}
                             imageUrl={ad.image_url}
-                            isSaved={this.props.userAds.indexOf(ad._id) != -1}
+                            isSaved={this.props.userAds.indexOf(ad._id) !== -1}
                             toggleSaved={() => {
                                 this.props.toggleAdSave(ad._id)
                             }}
