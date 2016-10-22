@@ -49,8 +49,8 @@ function getSavedAdsByUserId(userId, limit, offset, callback){
   getUserById(userId, function(err, result){
       if(err) callback(err, null);
       else if(result.saved_ads === null || offset === null || limit === null) callback(err, null);
-      ids = result.saved_ads;
-      models.Ad.find({_id: ids}).skip(offset).limit(limit).exec(function(err, result){
+      const ids = result.saved_ads;
+      models.Ad.find({_id: {$in: ids}}).skip(offset).limit(limit).exec(function(err, result){
         if(err) callback(err, null);
         callback(null, result);
       });
@@ -86,7 +86,9 @@ function setUserFavTags(userId, fav_tags, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
   models.User.findOneAndUpdate({id: userId}, {$set: {fav_tags: fav_tags}}, function(err, result) {
     if(err) callback(err, null);
-    callback(null, result);
+    else {
+        callback(null, result);
+    }
   });
 }
 
