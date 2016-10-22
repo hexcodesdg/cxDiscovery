@@ -63,6 +63,7 @@ app.use(function (err, req, res, next) {
 //     if (err)
 //         console.log(err)
 // })
+mongoose.Promise = require("bluebird")
 mongoose.connect(process.env.MONGO_URL, function(err) {
     if (err) throw err
 })

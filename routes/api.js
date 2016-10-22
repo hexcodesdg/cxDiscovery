@@ -11,19 +11,27 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/ads", (req, res) => {
+router.get("/ads", (req, res, next) => {
   const limit = (req.query.limit === null) ? 0 : req.query.limit;
   const offset = (req.query.offset === null) ? 0 : req.query.offset;
   if(req.query.user_id){
     db.getAdsByUserId(req.query.user_id, limit, offset, function(err, result){
-      if(err) res.end(err);
-      res.json(result);
+      if (err) next(err)
+      else {
+          res.json({
+              success: true,
+              data: result
+          });
+      }
     });
   }
   else if(req.query.tags){
     db.getAdsByTags(req.query.tags, limit, offset, function(err, result){
-      if(err) res.end(err);
-      res.json(result);
+      if(err) next(err);
+      res.json({
+          success: true,
+          data: result
+      });
     });
   }
   else {

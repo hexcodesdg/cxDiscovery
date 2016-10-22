@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const tagConstants = require("./tagConstants");
 
 const UserSchema = new mongoose.Schema({
+    id: {type: Number, required: true},
     name: {type: String, required: true},
     frequent_flier_id: {type: Number, required: true},
     nationality: {type: String, required: true},

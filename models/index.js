@@ -1,3 +1,3 @@
-// @flow weak 
-module.exports.user = require('./User');
-module.exports.ad = require('./Ad');
+// @flow weak
+module.exports.User = require('./User');
+module.exports.Ad = require('./Ad');

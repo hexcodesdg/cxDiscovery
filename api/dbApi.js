@@ -10,12 +10,17 @@ function getAdsByUserId(userId, limit, offset, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
   getUserById(userId, function(err, result){
       if(err) callback(err, null);
-      else if(result.fav_tags === null || offset === null || limit === null) callback(err, null);
-      tags = result.fav_tags;
-      models.Ad.find({tags: tags}).skip(offset).limit(limit).exec(function(err, result){
-        if(err) callback(err, null);
-        callback(null, result);
-      });
+      else if(!result) {
+          callback(new Error("User not found"), null)
+      } else {
+          const tags = result.fav_tags;
+          models.Ad.find({tags}).skip(offset).limit(limit).exec(function(err, result){
+            if(err) callback(err, null);
+            else {
+                callback(null, result)
+            }
+        });
+      }
   });
 }
 
@@ -52,7 +57,7 @@ function getSavedAdsByUserId(userId, limit, offset, callback){
 */
 function getUserById(userId, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
-  models.User.findOne({_id: userId}).exec(function(err, result){
+  models.User.findOne({id: userId}).exec(function(err, result){
     if(err) callback(err, null);
     callback(null, result);
   });
@@ -63,7 +68,7 @@ function getUserById(userId, callback){
 */
 function setUserSavedAds(userId, saved_ads, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
-  models.User.findOneAndUpdate({_id: userId}, {$set: {saved_ads: saved_ads}}, function(err, result) {
+  models.User.findOneAndUpdate({id: userId}, {$set: {saved_ads: saved_ads}}, function(err, result) {
     if(err) callback(err, null);
     callback(null, result);
   });
@@ -74,7 +79,7 @@ function setUserSavedAds(userId, saved_ads, callback){
 */
 function setUserFavTags(userId, fav_tags, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
-  models.User.findOneAndUpdate({_id: userId}, {$set: {fav_tags: fav_tags}}, function(err, result) {
+  models.User.findOneAndUpdate({id: userId}, {$set: {fav_tags: fav_tags}}, function(err, result) {
     if(err) callback(err, null);
     callback(null, result);
   });
