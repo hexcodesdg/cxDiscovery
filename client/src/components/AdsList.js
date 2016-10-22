@@ -15,40 +15,47 @@ class AdsList extends Component {
     }
 
     render() {
-        //filters out ads by currentTags
-        // const renderedAds = this.props.ads.filter(ad => {
-        //     for (let i = 0; i < ad.tags.length; i++) {
-        //         const tag = ad.tags[i]
-        //         if (this.props.currentTags.indexOf(tag) !== -1) {
-        //             return true
-        //         }
-        //     }
-        //     return false
-        // })
+        // filters out ads by currentTags
+        console.log(this.props.ads)
+        const renderedAds = this.props.ads.filter(ad => {
+            for (let i = 0; i < ad.tags.length; i++) {
+                const tag = ad.tags[i]
+                if (this.props.currentTags.indexOf(tag) !== -1) {
+                    return true
+                }
+            }
+            return false
+        })
+        // const renderedAds = this.props.ads
 
         return (
             <Grid>
-                <Ad
-                    title="test"
-                    body="asdijandaisdn"
-                    imageUrl="http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg"
-                />
+                <div>
+                    {renderedAds.map(ad => {
+                        console.log(ad)
+                        return <Ad
+                            key={ad._id}
+                            title={ad.title}
+                            body={ad.body}
+                            imageUrl={ad.image_url}
+                            isSaved={this.props.userAds.indexOf(ad._id) != -1}
+                            toggleSaved={() => {
+                                this.props.toggleAdSave(ad._id)
+                            }}
+                        />
+                    })}
+                </div>
             </Grid>
         )
     }
 }
-
-// {renderedAds.map(ad => {
+// <Grid>
 //     <Ad
-//         title={ad.title}
-//         body={ad.body}
-//         imageUrl={this.props.image_url}
-//         isSaved={this.props.userAds.indexOf(ad._id) != -1}
-//         toggleSaved={() => {
-//             this.props.toggleAdSave(ad._id)
-//         }}
+//         title="test"
+//         body="asdijandaisdn"
+//         imageUrl="http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg"
 //     />
-// })}
+// </Grid>
 
 const mapDispatchToProps = dispatch => {
     return {
