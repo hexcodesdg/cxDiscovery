@@ -12,6 +12,11 @@ dotenv.config()
  */
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: true}))
+app.use(function(req, res, next) {
+    console.log(req.body)
+    console.log("received new request")
+    next()
+})
 
 /**
  * Routes
@@ -49,6 +54,21 @@ app.use(function (err, req, res, next) {
 /**
  * Mongoose setup
  */
+// const User = require('./models/User')
+// User.create({
+//     id: 1,
+//     name: "Daniel Hsing",
+//     frequent_flier_id: "1234567890",
+//     nationality: "Hong Kong",
+//     gender: "Male",
+//     email: "hsing.daniel@gmail.com",
+//     fav_tags: [],
+//     saved_ads: []
+// }, err => {
+//     if (err)
+//         console.log(err)
+// })
+mongoose.Promise = require("bluebird")
 mongoose.connect(process.env.MONGO_URL, function(err) {
     if (err) throw err
 })

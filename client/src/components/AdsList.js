@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import Ad from './Ad'
 import { fetchAds, toggleAdSave} from '../actions/ads'
 import { Grid } from 'react-inline-grid'
+import axios from 'axios'
+import { API_URL, USER_ID } from '../constants/config'
+
 
 class AdsList extends Component {
 
@@ -45,6 +48,9 @@ class AdsList extends Component {
                                 this.props.toggleAdSave(ad._id)
                             }}
                             handleClick={() => {
+                                axios.post(API_URL +"/click/"+USER_ID, {
+                                    ad_id: ad._id
+                                })
                                 console.log("clicked")
                             }}
                         />
