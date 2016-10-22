@@ -1,4 +1,4 @@
-import { TOGGLE_DRAWER } from '../constants/ui'
+import { TOGGLE_DRAWER, TOGGLE_TAG_SELECTOR } from '../constants/ui'
 import { TOGGLE_TAG } from '../constants/tags'
 import { TOGGLE_AD_SAVE, SET_ADS } from '../constants/ads'
 import update from 'react-addons-update'
@@ -6,6 +6,7 @@ import update from 'react-addons-update'
 
 const initialState = {
     isDrawerOpen: false,
+    isTagSelectorOpen: false,
     ads: [],
     current_tags: [],
     user: {
@@ -19,6 +20,10 @@ export default function mainReducer(state = initialState, action) {
     switch (action.type) {
         default:
             return state
+        case TOGGLE_TAG_SELECTOR:
+            return update(state, {
+                isTagSelectorOpen: {$set: !state.isTagSelectorOpen}
+            })
         case TOGGLE_DRAWER:
             return update(state, {
                 isDrawerOpen: {$set: !state.isDrawerOpen}

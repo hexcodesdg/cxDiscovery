@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import baseTheme from './theme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Grid } from 'react-inline-grid'
 import "./index.css"
 
 class App extends Component {
