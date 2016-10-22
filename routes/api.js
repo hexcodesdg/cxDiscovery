@@ -53,7 +53,12 @@ router.get("/user", (req, res) => {
   if(req.query.user_id) {
     db.getUserById(req.query.user_id, function(err, result){
       if(err) res.end(err);
-      res.json(result);
+      else {
+          res.json({
+              success: true,
+              data: result
+          });
+      }
     });
   }
   else {

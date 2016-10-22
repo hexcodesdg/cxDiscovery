@@ -12,6 +12,11 @@ dotenv.config()
  */
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: true}))
+app.use(function(req, res, next) {
+    console.log(req.body)
+    console.log("received new request")
+    next()
+})
 
 /**
  * Routes
