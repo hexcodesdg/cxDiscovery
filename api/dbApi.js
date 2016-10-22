@@ -141,6 +141,37 @@ function postSaveRecord(userId, ad_id, cb) {
     })
 }
 
+
+/*
+* Creates new click record
+*/
+function postClickRecord(userId, ad_id, cb) {
+    models.Click.create({
+        user_id: userId,
+        ad_id
+    }, (err, click) => {
+        if (err) cb(err, null)
+        else {
+            cb(null, click)
+        }
+    });
+}
+
+/*
+* Creates new read record
+*/
+function postReadRecord(userId, ad_id, cb) {
+    models.Read.create({
+        user_id: userId,
+        ad_id
+    }, (err, read) => {
+        if (err) cb(err, null)
+        else {
+            cb(null, read)
+        }
+    });
+}
+
 // Module exports
 module.exports.getAdsByUserId = getAdsByUserId;
 module.exports.getAdsByTags = getAdsByTags;
@@ -150,3 +181,5 @@ module.exports.setUserSavedAds = setUserSavedAds;
 module.exports.setUserFavTags = setUserFavTags;
 module.exports.getAllTags = getAllTags;
 module.exports.postSaveRecord = postSaveRecord
+module.exports.postReadRecord = postReadRecord
+module.exports.postClickRecord = postClickRecord
