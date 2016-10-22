@@ -80,14 +80,16 @@ function setUserSavedAds(userId, saved_ad, callback){
       else {
           const index = user.saved_ads.indexOf(saved_ad)
           if (index == -1) {
-              user.saved_ads.push(saved_ad)
+              models.User.findOneAndUpdate({id: userId}, {$push: {saved_ads: saved_ad}}, function(err, newUser) {
+                  if (err) callback(err, null)
+                  else callback(null, newUser)
+              })
           } else {
-              user.saved_ads.splice(index, 1)
+              models.User.findOneAndUpdate({id: userId}, {$pull: {saved_ads: saved_ad}}, function(err, newUser) {
+                  if (err) callback(err, null)
+                  else callback(null, newUser)
+              })
           }
-          user.save(function(err, newUser) {
-              if (err) callback(err, null)
-              else callback(null, newUser)
-          })
       }
   })
 }
