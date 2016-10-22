@@ -7,14 +7,19 @@ var tagConstants = require('../models/tagConstants');
 */
 function getAdsByUserId(userId, limit, offset, callback){
   let tags = [];
+  limit = limit ? limit : 10
+  offset = offset ? offset : 0
   if(userId === null) callback(new Error('userId cannot be null'), null);
   getUserById(userId, function(err, result){
       if(err) callback(err, null);
       else if(!result) {
           callback(new Error("User not found"), null)
       } else {
-          const tags = result.fav_tags;
-          models.Ad.find({tags}).skip(offset).limit(limit).exec(function(err, result){
+          const query = {}
+          if (result.fav_tags.length > 0) {
+              query["tags"] = result.fav_tags
+          }
+          models.Ad.find(query).skip(offset).limit(limit).exec(function(err, result){
             if(err) callback(err, null);
             else {
                 callback(null, result)
