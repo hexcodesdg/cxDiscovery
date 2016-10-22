@@ -36,7 +36,7 @@ export default class Ad extends Component {
     }
 
     render() {
-        const imageStyle = {maxWidth: "600px", minWidth:"300px"}
+        const imageStyle = {maxWidth: "600px", minWidth:"400px", margin: "auto", display: "block"}
         const actions = <FlatButton primary={true} label="Close" onTouchTap={this.onModalClose}/>
 
         return (
@@ -57,18 +57,14 @@ export default class Ad extends Component {
                             {this.props.body.substring(0, 50)}
                         </CardText>
                         <CardActions>
-                            <Row>
-                                {this.props.tags.map(tag => {
-                                    return <Chip>{tag}</Chip>
-                                })}
-                            </Row>
-                            <IconButton onClick={this.props.toggleSaved}>
-                                {this.props.isSaved ?
-                                    <TurnedIn/>
-                                :
-                                    <TurnedInNot/>
-                                }
-                            </IconButton>
+                                <Row>
+                                    {this.props.tags.map(tag => {
+                                        return <Chip>{tag}</Chip>
+                                    })}
+                                    <Cell>
+
+                                    </Cell>
+                                </Row>
                         </CardActions>
                     </Card>
                     <Dialog
