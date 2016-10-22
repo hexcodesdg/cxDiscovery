@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import baseTheme from './theme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { connect } from 'react-redux'
+import { getUserInfo } from './actions/ads'
 import "./index.css"
 
 class App extends Component {
+
+    componentWillMount() {
+        this.props.getUserInfo()
+    }
 
     static childContextTypes = {
         muiTheme: React.PropTypes.object.isRequired
@@ -24,4 +30,12 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+    return {
+        getUserInfo: () => {
+            dispatch(getUserInfo())
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(App);
