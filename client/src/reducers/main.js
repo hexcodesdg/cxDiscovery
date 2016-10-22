@@ -28,7 +28,7 @@ export default function mainReducer(state = initialState, action) {
                 isDrawerOpen: {$set: !state.isDrawerOpen}
             })
         case TOGGLE_FAV_TAG:
-            if (state.user.fav_tags.indexOf(action.tag === -1)) {
+            if (state.user.fav_tags.indexOf(action.tag) === -1) {
                 return update(state, {
                     user: {
                         fav_tags: {$push: [action.tag]}
