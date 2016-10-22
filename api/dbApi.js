@@ -3,6 +3,16 @@ var models = require('../models');
 var tagConstants = require('../models/tagConstants');
 
 /*
+* Creates new save record
+*/
+function postSaveRecord(userId, ad_id) {
+    models.Save.create({
+        user_id: userId,
+        ad_id
+    })
+}
+
+/*
 * Get Ads by User Id
 */
 function getAdsByUserId(userId, limit, offset, callback){
@@ -80,6 +90,7 @@ function setUserSavedAds(userId, saved_ad, callback){
       else {
           const index = user.saved_ads.indexOf(saved_ad)
           if (index === -1) {
+              postSaveRecord(userId, saved_ad)
               models.User.findOneAndUpdate({id: userId}, {$push: {saved_ads: saved_ad}}, function(err, newUser) {
                   if (err) callback(err, null)
                   else callback(null, newUser)
@@ -126,20 +137,6 @@ function getAllTags(){
   return tagConstants;
 }
 
-/*
-* Creates new save record
-*/
-function postSaveRecord(userId, ad_id, cb) {
-    models.Save.create({
-        user_id: userId,
-        ad_id
-    }, (err, save) => {
-        if (err) cb(err, null)
-        else {
-            cb(null, save)
-        }
-    })
-}
 
 
 /*
@@ -180,6 +177,5 @@ module.exports.getUserById = getUserById;
 module.exports.setUserSavedAds = setUserSavedAds;
 module.exports.setUserFavTags = setUserFavTags;
 module.exports.getAllTags = getAllTags;
-module.exports.postSaveRecord = postSaveRecord
 module.exports.postReadRecord = postReadRecord
 module.exports.postClickRecord = postClickRecord

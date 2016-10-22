@@ -132,24 +132,6 @@ router.post("/tags", (req, res, next) => {
   }
 });
 
-router.post("/save/:userId", (req, res, next) => {
-    if (req.body.ad_id) {
-        db.postSaveRecord(req.params.userId, req.body.ad_id, function(err, result) {
-            if (err) next(err)
-            else {
-                res.json({
-                    success: true,
-                    data: result
-                })
-            }
-        })
-    } else {
-        res.json({
-            success: false,
-            message: "please enter in ad_id"
-        })
-    }
-});
 
 router.post("/read/:userId", (req, res, next) => {
     if (req.body.ad_id) {
