@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton'
 import Clear from 'material-ui/svg-icons/content/clear'
 import { toggleDrawer } from '../actions/ui'
 import {Grid,Row} from 'react-inline-grid'
+import TagsList from './TagsList'
 
 class Sidebar extends Component {
 
@@ -17,16 +18,13 @@ class Sidebar extends Component {
         return (
             <Drawer open={this.props.open}>
                 <Grid>
-                    <div>
-                        <Row is="end">
-                            <IconButton onClick={this.props.toggleDrawer} style={{float: "right"}}>
-                                <Clear/>
-                            </IconButton>
-                        </Row>
-                        <MenuItem primaryText="Hello World"/>
-                        <MenuItem primaryText="Hello world"/>
-                    </div>
+                    <Row is="end">
+                        <IconButton onClick={this.props.toggleDrawer} style={{float: "right"}}>
+                            <Clear/>
+                        </IconButton>
+                    </Row>
                 </Grid>
+                <TagsList/>
             </Drawer>
         )
     }

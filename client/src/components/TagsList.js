@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import MenuItem from 'material-ui/MenuItem'
+import { toggleTag } from '../actions/tags'
 import { connect } from 'react-redux'
+import LocalOffer from 'material-ui/svg-icons/maps/local-offer'
 
 class TagsList extends Component {
 
@@ -8,8 +10,14 @@ class TagsList extends Component {
 
         return (
             <div>
-                {this.props.tags.map(tag => {
-                    <MenuItem primaryText={tag}/>
+                {this.props.favTags.map((tag, index) => {
+                    return <MenuItem key={index}
+                        onClick={() => {
+                            this.props.toggleTag(tag)
+                        }}
+                        primaryText={tag}
+                        leftIcon={this.props.currentTags.indexOf(tag) !== -1 &&
+                            <LocalOffer/>}/>
                 })}
             </div>
         )
@@ -18,8 +26,17 @@ class TagsList extends Component {
 
 const mapStateToProps = state => {
     return {
-        tags: state.main.user.fav_tags
+        favTags: state.main.user.fav_tags,
+        currentTags: state.main.current_tags
     }
 }
 
-export default connect()(TagsList)
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleTag: (tag) => {
+            dispatch(toggleTag(tag))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TagsList)
