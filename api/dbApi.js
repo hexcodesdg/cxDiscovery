@@ -17,7 +17,7 @@ function postSaveRecord(userId, ad_id) {
 */
 function getAdsByUserId(userId, limit, offset, callback){
   let tags = [];
-  limit = limit ? limit : 10
+  limit = limit ? limit : 20
   offset = offset ? offset : 0
   if(userId === null) callback(new Error('userId cannot be null'), null);
   getUserById(userId, function(err, result){
