@@ -38,12 +38,16 @@ export default function mainReducer(state = initialState, action) {
                 const newFavTags = state.user.fav_tags.filter(tag => {
                     return tag !== action.tag
                 })
+                const newCurrentTags = state.current_tags.filter(tag => {
+                    return tag !== action.tag
+                })
                 return update(state, {
                     user: {
                         fav_tags: {
                             $set: newFavTags
                         }
-                    }
+                    },
+                    current_tags: {$set: newCurrentTags}
                 })
             }
         case TOGGLE_AD_SAVE:

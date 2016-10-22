@@ -28,7 +28,7 @@ class AdsList extends Component {
                 return false
             })
         }
-        // const renderedAds = this.props.ads
+        console.log(this.props.currentTags)
 
         return (
             <Grid>
@@ -37,12 +37,15 @@ class AdsList extends Component {
                         return <Ad
                             key={ad._id}
                             title={ad.title}
-                            body={ad.body.substring(0, 50)}
+                            body={ad.body}
                             tags={ad.tags}
                             imageUrl={ad.image_url}
                             isSaved={this.props.userAds.indexOf(ad._id) !== -1}
                             toggleSaved={() => {
                                 this.props.toggleAdSave(ad._id)
+                            }}
+                            handleClick={() => {
+                                console.log("clicked")
                             }}
                         />
                     })}
@@ -51,13 +54,6 @@ class AdsList extends Component {
         )
     }
 }
-// <Grid>
-//     <Ad
-//         title="test"
-//         body="asdijandaisdn"
-//         imageUrl="http://www.vetprofessionals.com/catprofessional/images/home-cat.jpg"
-//     />
-// </Grid>
 
 const mapDispatchToProps = dispatch => {
     return {
