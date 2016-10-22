@@ -18,6 +18,7 @@ class Header extends Component {
         return (
             <div>
                 <AppBar
+                    style={{position: "fixed"}}
                     title="cxDiscovery"
                     iconElementLeft={menuButton}
                 />
