@@ -25,7 +25,7 @@ export default class Ad extends Component {
             <Row is="center">
                 <Card>
                     <CardMedia>
-                        <img style={{maxWidth: "300px", minWidth:"300px"}} src={this.props.imageUrl}/>
+                        <img style={{maxWidth: "500px", minWidth:"300px"}} src={this.props.imageUrl}/>
                     </CardMedia>
                     <CardTitle title={this.props.title}/>
                     <CardText>

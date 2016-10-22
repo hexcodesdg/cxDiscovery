@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import IconButton from 'material-ui/IconButton'
 import ArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import { toggleDrawer } from '../actions/ui'
+import {Grid,Row} from 'react-inline-grid'
 
 class Sidebar extends Component {
 
@@ -15,9 +16,17 @@ class Sidebar extends Component {
     render() {
         return (
             <Drawer open={this.props.open}>
-                <IconButton onClick={this.props.toggleDrawer} style={{float: "right"}}>
-                    <ArrowRight/>
-                </IconButton>
+                <Grid>
+                    <div>
+                        <Row is="end">
+                            <IconButton onClick={this.props.toggleDrawer} style={{float: "right"}}>
+                                <ArrowRight/>
+                            </IconButton>
+                        </Row>
+                        <MenuItem primaryText="Hello World"/>
+                        <MenuItem primaryText="Hello world"/>
+                    </div>
+                </Grid>
             </Drawer>
         )
     }
