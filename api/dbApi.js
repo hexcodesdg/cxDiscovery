@@ -72,12 +72,24 @@ function getUserById(userId, callback){
 /*
 * Set User's Saved Ads by their Ids
 */
-function setUserSavedAds(userId, saved_ads, callback){
+function setUserSavedAds(userId, saved_ad, callback){
   if(userId === null) callback(new Error('userId cannot be null'), null);
-  models.User.findOneAndUpdate({id: userId}, {$set: {saved_ads: saved_ads}}, function(err, result) {
-    if(err) callback(err, null);
-    callback(null, result);
-  });
+  models.User.findOne({id: userId}, function(err, user) {
+      if(err) callback(err, null)
+      else if (!user) callback(new Error("user not found"), null)
+      else {
+          const index = user.saved_ads.indexOf(saved_ad)
+          if (index == -1) {
+              user.saved_ads.push(saved_ad)
+          } else {
+              user.saved_ads.splice(index, 1)
+          }
+          user.save(function(err, newUser) {
+              if (err) callback(err, null)
+              else callback(null, newUser)
+          })
+      }
+  })
 }
 
 /*

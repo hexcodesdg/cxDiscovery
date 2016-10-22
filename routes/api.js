@@ -95,8 +95,8 @@ router.get("/user/:userId/saved_ads", (req, res, next) => {
 * saves a user's saved Ads through their user Id
 */
 router.post("/ads", (req, res, next) => {
-  if(req.body.user_id && req.body.saved_ads){
-    db.setUserSavedAds(req.body.user_id, req.body.saved_ads, function(err, result){
+  if(req.body.user_id && req.body.saved_ad){
+    db.setUserSavedAds(req.body.user_id, req.body.saved_ad, function(err, result){
       if(err) next(err);
       else {
           res.json({
@@ -107,7 +107,7 @@ router.post("/ads", (req, res, next) => {
     });
   }
   else {
-    res.json({success: false, message: 'user_id and saved_ads should be provided'});
+    res.json({success: false, message: 'user_id and saved_ad should be provided'});
   }
 });
 
