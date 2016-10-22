@@ -2,6 +2,7 @@ import { SET_ADS, TOGGLE_AD_SAVE } from '../constants/ads'
 
 export function fetchAds() {
     //perform http request to fetch ads
+    return setAds([])
 }
 
 export function setAds(ads) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import AdsList from '../components/AdsList'
 
 export default class IndexContainer extends Component {
 
@@ -9,6 +10,7 @@ export default class IndexContainer extends Component {
             <div>
                 <Header/>
                 <Sidebar/>
+                <AdsList/>
             </div>
         )
     }
