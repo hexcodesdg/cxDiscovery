@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class TagsList extends Component {
 
     render() {
-        
+
         return (
             <div>
                 {this.props.tags.map(tag => {

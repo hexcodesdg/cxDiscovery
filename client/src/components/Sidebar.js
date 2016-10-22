@@ -3,7 +3,7 @@ import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import { connect } from 'react-redux'
 import IconButton from 'material-ui/IconButton'
-import ArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
+import Clear from 'material-ui/svg-icons/content/clear'
 import { toggleDrawer } from '../actions/ui'
 import {Grid,Row} from 'react-inline-grid'
 
@@ -20,7 +20,7 @@ class Sidebar extends Component {
                     <div>
                         <Row is="end">
                             <IconButton onClick={this.props.toggleDrawer} style={{float: "right"}}>
-                                <ArrowRight/>
+                                <Clear/>
                             </IconButton>
                         </Row>
                         <MenuItem primaryText="Hello World"/>
