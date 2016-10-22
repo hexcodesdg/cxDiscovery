@@ -61,10 +61,14 @@ export default class Ad extends Component {
                                     {this.props.tags.map(tag => {
                                         return <Chip>{tag}</Chip>
                                     })}
-                                    <Cell>
-
-                                    </Cell>
                                 </Row>
+                                <IconButton onClick={this.props.toggleSaved}>
+                                 {this.props.isSaved ?
+                                     <TurnedIn/>
+                                 :
+                                     <TurnedInNot/>
+                                 }
+                             </IconButton>
                         </CardActions>
                     </Card>
                     <Dialog
