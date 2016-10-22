@@ -1,5 +1,5 @@
 import { TOGGLE_DRAWER, TOGGLE_TAG_SELECTOR } from '../constants/ui'
-import { TOGGLE_TAG, SET_FAV_TAGS } from '../constants/tags'
+import { TOGGLE_TAG, SET_FAV_TAGS, TOGGLE_FAV_TAG } from '../constants/tags'
 import { TOGGLE_AD_SAVE, SET_ADS, SET_SAVED_ADS } from '../constants/ads'
 import update from 'react-addons-update'
 
@@ -27,6 +27,25 @@ export default function mainReducer(state = initialState, action) {
             return update(state, {
                 isDrawerOpen: {$set: !state.isDrawerOpen}
             })
+        case TOGGLE_FAV_TAG:
+            if (state.user.fav_tags.indexOf(action.tag === -1)) {
+                return update(state, {
+                    user: {
+                        fav_tags: {$push: [action.tag]}
+                    }
+                })
+            } else {
+                const newFavTags = state.user.fav_tags.filter(tag => {
+                    return tag !== action.tag
+                })
+                return update(state, {
+                    user: {
+                        fav_tags: {
+                            $set: newFavTags
+                        }
+                    }
+                })
+            }
         case TOGGLE_AD_SAVE:
             if (state.user.saved_ads.indexOf(action.id) === -1) {
                 return update(state, {

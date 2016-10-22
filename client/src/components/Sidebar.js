@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
 import { connect } from 'react-redux'
 import IconButton from 'material-ui/IconButton'
+import MenuItem from 'material-ui/MenuItem'
 import Clear from 'material-ui/svg-icons/content/clear'
-import { toggleDrawer } from '../actions/ui'
+import { toggleDrawer, toggleTagSelector } from '../actions/ui'
 import {Grid,Row} from 'react-inline-grid'
 import TagsList from './TagsList'
 
@@ -25,6 +25,7 @@ class Sidebar extends Component {
                     </Row>
                 </Grid>
                 <TagsList/>
+                <MenuItem primaryText="show more tags..." onClick={this.props.toggleTagSelector}/>
             </Drawer>
         )
     }
@@ -40,6 +41,9 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleDrawer: () => {
             dispatch(toggleDrawer())
+        },
+        toggleTagSelector: () => {
+            dispatch(toggleTagSelector())
         }
     }
 }
