@@ -26,10 +26,10 @@ function getAdsByUserId(userId, limit, offset, callback){
           callback(new Error("User not found"), null)
       } else {
           let query = {}
-          if (result.fav_tags.length > 0) {
-              query = {tags: {$in: result.fav_tags}}
-          }
-          console.log(query)
+        //   if (result.fav_tags.length > 0) {
+        //       query = {tags: {$in: result.fav_tags}}
+        //   }
+        //   console.log(query)
           models.Ad.find(query).skip(offset).limit(limit).exec(function(err, result){
             if(err) callback(err, null);
             else {
