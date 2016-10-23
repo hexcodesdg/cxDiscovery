@@ -44,7 +44,7 @@ export default class Ad extends Component {
                 <div>
                     <Card
                         initiallyExpanded={true}>
-                        {this.props.vendor_url && this.props.vendor_name &&
+                        {this.props.vendorUrl && this.props.vendorName &&
                             <CardHeader
                                 title={this.props.vendorName}
                                 avatar={this.props.vendorUrl}
