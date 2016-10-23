@@ -24,7 +24,7 @@ class Sidebar extends Component {
             <Drawer open={this.props.open} containerStyle={{width: "270px"}}>
                 <MenuItem
                     style={{fontWeight: "bold", marginBottom: "10px"}}
-                    primaryText="Favourite Tags"
+                    primaryText="Tags"
                     rightIcon={<Clear onClick={this.props.toggleDrawer}/>}
                     leftIcon={this.props.savedAdsShown ? <TurnedIn color="#C1b49a" onClick={this.props.hideSavedAds}/> : <TurnedInNot color="#C1b49a" onClick={() => {
                         console.log("clicked")
