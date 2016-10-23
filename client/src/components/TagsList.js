@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MenuItem from 'material-ui/MenuItem'
 import { toggleTag } from '../actions/tags'
+import { hideSavedAds } from '../actions/ads'
 import { connect } from 'react-redux'
 import LocalOffer from 'material-ui/svg-icons/maps/local-offer'
 
@@ -13,6 +14,7 @@ class TagsList extends Component {
                 {this.props.favTags.map((tag, index) => {
                     return <MenuItem key={index}
                         onClick={() => {
+                            this.props.hideSavedAds()
                             this.props.toggleTag(tag)
                         }}
                         primaryText={tag}
@@ -35,6 +37,9 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleTag: (tag) => {
             dispatch(toggleTag(tag))
+        },
+        hideSavedAds: () => {
+            dispatch(hideSavedAds())
         }
     }
 }

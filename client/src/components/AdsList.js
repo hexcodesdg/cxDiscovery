@@ -20,7 +20,11 @@ class AdsList extends Component {
     render() {
         // filters out ads by currentTags
         let renderedAds = this.props.ads
-        if (this.props.currentTags.length > 0) {
+        if (this.props.savedAdsShown) {
+            renderedAds = this.props.ads.filter(ad => {
+                return this.props.userAds.indexOf(ad._id) !== -1
+            })
+        } else if (this.props.currentTags.length > 0) {
             renderedAds = this.props.ads.filter(ad => {
                 for (let i = 0; i < ad.tags.length; i++) {
                     const tag = ad.tags[i]
@@ -76,7 +80,8 @@ const mapStateToProps = state => {
     return {
         ads: state.main.ads,
         userAds: state.main.user.saved_ads,
-        currentTags: state.main.current_tags
+        currentTags: state.main.current_tags,
+        savedAdsShown: state.main.savedAdsShown
     }
 }
 

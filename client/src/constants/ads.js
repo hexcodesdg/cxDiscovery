@@ -1,3 +1,5 @@
 export const TOGGLE_AD_SAVE = "TOGGLE_AD_SAVE"
 export const SET_ADS = "SET_ADS"
 export const SET_SAVED_ADS = "SET_SAVED_ADS"
+export const SHOW_SAVED_ADS = "SHOW_SAVED_ADS"
+export const HIDE_SAVED_ADS = "HIDE_SAVED_ADS"

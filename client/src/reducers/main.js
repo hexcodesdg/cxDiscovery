@@ -1,12 +1,13 @@
 import { TOGGLE_DRAWER, TOGGLE_TAG_SELECTOR } from '../constants/ui'
 import { TOGGLE_TAG, SET_FAV_TAGS, TOGGLE_FAV_TAG } from '../constants/tags'
-import { TOGGLE_AD_SAVE, SET_ADS, SET_SAVED_ADS } from '../constants/ads'
+import { TOGGLE_AD_SAVE, SET_ADS, SET_SAVED_ADS, HIDE_SAVED_ADS, SHOW_SAVED_ADS } from '../constants/ads'
 import update from 'react-addons-update'
 
 
 const initialState = {
     isDrawerOpen: false,
     isTagSelectorOpen: false,
+    savedAdsShown: false,
     ads: [],
     current_tags: [],
     user: {
@@ -99,6 +100,14 @@ export default function mainReducer(state = initialState, action) {
                 user: {
                     saved_ads: {$set: action.ads}
                 }
+            })
+        case SHOW_SAVED_ADS:
+            return update(state, {
+                savedAdsShown: {$set: true}
+            })
+        case HIDE_SAVED_ADS:
+            return update(state, {
+                savedAdsShown: {$set: false}
             })
     }
 }

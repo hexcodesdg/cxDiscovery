@@ -7,23 +7,33 @@ import {GridList} from 'material-ui/GridList'
 import { connect } from 'react-redux'
 import TagSelectorItem from './TagSelectorItem'
 
-// const tagMap = {
-//     "Featured products":,
-//     "Travel":
-//     "Gourmet and Wine":
-//     "Entertainment and Events":
-//     "Electronics and Accessories":
-//     "Beauty, Health and Personal Care":
-//     "Fashion, Apparel and Sports":
-//     "Home and Kids":
-//     "Gift Cards and Miles Conversion":
-//     "Social Goods":
-// }
+import beauty from '../img/beauty.jpg'
+import electronics from '../img/electronics.jpg'
+import travel from '../img/travel.jpg'
+import events from '../img/events.jpg'
+import fashion from '../img/fashion.jpg'
+import home from '../img/home.jpg'
+import cards from '../img/cards.jpg'
+import wine from '../img/wine.jpg'
+import featured_products from '../img/featured_products.jpg'
 
-const tagList = ['Featured products', 'Travel', 'Gourmet and Wine', 'Entertainment and Events', 'Electronics and Accessories',
-                  'Beauty, Health and Personal Care', 'Fashion, Apparel and Sports', 'Home and Kids',
-                  'Gift Cards and Miles Conversion', 'Social Goods'
-                 ];
+const tagMap = {
+    "Featured products": featured_products,
+    "Travel": travel,
+    "Gourmet and Wine": wine,
+    "Entertainment and Events": events,
+    "Electronics and Accessories": electronics,
+    "Beauty, Health and Personal Care": beauty,
+    "Fashion, Apparel and Sports": fashion,
+    "Home and Kids": home,
+    "Gift Cards and Miles Conversion": cards,
+    "Social Goods": wine
+}
+
+// const tagList = ['Featured products', 'Travel', 'Gourmet and Wine', 'Entertainment and Events', 'Electronics and Accessories',
+//                   'Beauty, Health and Personal Care', 'Fashion, Apparel and Sports', 'Home and Kids',
+//                   'Gift Cards and Miles Conversion', 'Social Goods'
+//                  ];
 
 class TagSelector extends Component {
 
@@ -50,10 +60,11 @@ class TagSelector extends Component {
                 actions={actions}
             >
                 <GridList style={{display: "flex", justifyContent: "center"}}>
-                    {tagList.map((tag, index) => {
+                    {Object.keys(tagMap).map((tag, index) => {
                         return <TagSelectorItem
                                 key={index}
                                 title={tag}
+                                img={tagMap[tag]}
                                 handleClick={() => {
                                     this.props.toggleFavTag(tag)
                                 }}

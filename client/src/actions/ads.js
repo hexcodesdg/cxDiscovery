@@ -1,4 +1,4 @@
-import { SET_ADS, TOGGLE_AD_SAVE, SET_SAVED_ADS } from '../constants/ads'
+import { SET_ADS, TOGGLE_AD_SAVE, SET_SAVED_ADS, SHOW_SAVED_ADS, HIDE_SAVED_ADS } from '../constants/ads'
 import { setFavTags } from './tags'
 import { API_URL, USER_ID } from '../constants/config'
 import axios from 'axios'
@@ -55,5 +55,17 @@ export function getUserInfo() {
             dispatch(setSavedAds(data.saved_ads))
             dispatch(setFavTags(data.fav_tags))
         })
+    }
+}
+
+export function showSavedAds() {
+    return {
+        type: SHOW_SAVED_ADS
+    }
+}
+
+export function hideSavedAds() {
+    return {
+        type: HIDE_SAVED_ADS
     }
 }

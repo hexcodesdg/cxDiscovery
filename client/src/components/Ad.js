@@ -87,7 +87,7 @@ export default class Ad extends Component {
                         <CardActions>
                             <Row>
                                 {this.props.tags.map(tag => {
-                                    return <Chip>{tag}</Chip>
+                                    return <Chip key={tag} style={{borderRadius: 0}}>{tag}</Chip>
                                 })}
                             </Row>
                         </CardActions>

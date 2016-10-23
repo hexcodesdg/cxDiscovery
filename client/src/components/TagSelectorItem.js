@@ -18,7 +18,9 @@ export default class TagSelectorItem extends Component {
                     :
                         <FavoriteBorder/>
                     }
-                </IconButton>}/>
+                </IconButton>}>
+                <img src={this.props.img}/>
+            </GridTile>
         )
     }
 }

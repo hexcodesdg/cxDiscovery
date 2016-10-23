@@ -5,10 +5,13 @@ import IconButton from 'material-ui/IconButton'
 import MenuItem from 'material-ui/MenuItem'
 import Clear from 'material-ui/svg-icons/content/clear'
 import { toggleDrawer, toggleTagSelector } from '../actions/ui'
+import { hideSavedAds, showSavedAds} from '../actions/ads'
 import TagsList from './TagsList'
 import Paper from 'material-ui/Paper'
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 import Divider from 'material-ui/Divider';
+import TurnedIn from 'material-ui/svg-icons/action/turned-in'
+import TurnedInNot from 'material-ui/svg-icons/action/turned-in-not'
 
 class Sidebar extends Component {
 
@@ -19,7 +22,15 @@ class Sidebar extends Component {
     render() {
         return (
             <Drawer open={this.props.open} containerStyle={{width: "270px"}}>
-                <MenuItem style={{fontWeight: "bold", marginBottom: "10px"}} primaryText="Favourite Tags" rightIcon={<Clear onClick={this.props.toggleDrawer}/>}/>
+                <MenuItem
+                    style={{fontWeight: "bold", marginBottom: "10px"}}
+                    primaryText="Favourite Tags"
+                    rightIcon={<Clear onClick={this.props.toggleDrawer}/>}
+                    leftIcon={this.props.savedAdsShown ? <TurnedIn color="#C1b49a" onClick={this.props.hideSavedAds}/> : <TurnedInNot color="#C1b49a" onClick={() => {
+                        console.log("clicked")
+                        this.props.showSavedAds()
+                    }}/>}
+                />
                 <TagsList/>
                 <Divider style={{marginTop: "10px"}}/>
                 <MenuItem primaryText="show more tags" onClick={this.props.toggleTagSelector} rightIcon={<ArrowDown/>}/>
@@ -30,7 +41,8 @@ class Sidebar extends Component {
 
 const mapStateToProps = state => {
     return {
-        open: state.main.isDrawerOpen
+        open: state.main.isDrawerOpen,
+        savedAdsShown: state.main.savedAdsShown
     }
 }
 
@@ -41,6 +53,12 @@ const mapDispatchToProps = dispatch => {
         },
         toggleTagSelector: () => {
             dispatch(toggleTagSelector())
+        },
+        hideSavedAds: () => {
+            dispatch(hideSavedAds())
+        },
+        showSavedAds: () => {
+            dispatch(showSavedAds())
         }
     }
 }

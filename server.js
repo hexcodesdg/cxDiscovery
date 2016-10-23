@@ -54,29 +54,6 @@ app.use(function (err, req, res, next) {
 /**
  * Mongoose setup
  */
-// const Ad = require("./models/Ad")
-// Ad.findOneAndUpdate({
-//     _id: "580b7565135a7e4cb23b1b06"
-// }, {
-//     vendor_url: "https://pbs.twimg.com/profile_images/638709542193373184/Qh5N3_bO.png",
-//     vendor_name: "Harry's"
-// }, err => {
-//     if (err) console.log(err)
-// })
-// const User = require('./models/User')
-// User.create({
-//     id: 1,
-//     name: "Daniel Hsing",
-//     frequent_flier_id: "1234567890",
-//     nationality: "Hong Kong",
-//     gender: "Male",
-//     email: "hsing.daniel@gmail.com",
-//     fav_tags: [],
-//     saved_ads: []
-// }, err => {
-//     if (err)
-//         console.log(err)
-// })
 mongoose.Promise = require("bluebird")
 mongoose.connect(process.env.MONGO_URL, function(err) {
     if (err) throw err
