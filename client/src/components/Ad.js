@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card, CardMedia, CardTitle, CardActions, CardText} from 'material-ui/Card'
+import {Card, CardMedia, CardTitle, CardActions, CardText, CardHeader} from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import TurnedIn from 'material-ui/svg-icons/action/turned-in'
@@ -38,7 +38,7 @@ export default class Ad extends Component {
     }
 
     render() {
-        const imageStyle = {maxWidth: "600px", minWidth:"300px", cursor:"pointer"}
+        const imageStyle = {maxWidth: "600px", minWidth:"400px", margin: "auto", display: "block", cursor:"pointer"}
         const cardTitleStyle = {paddingBottom: 0, cursor:"pointer", maxWidth: "90%", display: "inline-flex", wordBreak: "break-word"}
         const cardTextStyle = {paddingTop: 0, fontStyle: 'Italic', color: 'rgba(125, 122, 122, 0.870588)', fontSize:"14px", cursor:"pointer"}
         const tagStyle = {maxWidth: "600px", minWidth:"300px", cursor:"pointer"}
@@ -52,12 +52,17 @@ export default class Ad extends Component {
                           </IconButton>
                           <FlatButton primary={true} label="Close" labelStyle={{color:"#C1b49a"}} onTouchTap={this.onModalClose}/>
                         </div>
-
         return (
             <Row is="center">
                 <div>
                     <Card
                         initiallyExpanded={true}>
+                        {this.props.vendorUrl && this.props.vendorName &&
+                            <CardHeader
+                                title={this.props.vendorName}
+                                avatar={this.props.vendorUrl}
+                                />
+                        }
                         <CardMedia onClick={() => {
                                 this.setState({
                                     modalVisible: true
@@ -85,6 +90,13 @@ export default class Ad extends Component {
                                     return <Chip>{tag}</Chip>
                                 })}
                             </Row>
+                                <IconButton onClick={this.props.toggleSaved}>
+                                 {this.props.isSaved ?
+                                     <TurnedIn/>
+                                 :
+                                     <TurnedInNot/>
+                                 }
+                             </IconButton>
                         </CardActions>
                     </Card>
                     <Dialog

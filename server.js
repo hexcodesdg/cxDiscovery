@@ -54,6 +54,15 @@ app.use(function (err, req, res, next) {
 /**
  * Mongoose setup
  */
+// const Ad = require("./models/Ad")
+// Ad.findOneAndUpdate({
+//     _id: "580b7565135a7e4cb23b1b06"
+// }, {
+//     vendor_url: "https://pbs.twimg.com/profile_images/638709542193373184/Qh5N3_bO.png",
+//     vendor_name: "Harry's"
+// }, err => {
+//     if (err) console.log(err)
+// })
 // const User = require('./models/User')
 // User.create({
 //     id: 1,

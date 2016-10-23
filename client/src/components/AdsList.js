@@ -31,7 +31,6 @@ class AdsList extends Component {
                 return false
             })
         }
-        console.log(this.props.currentTags)
 
         return (
             <Grid>
@@ -42,6 +41,8 @@ class AdsList extends Component {
                             title={ad.title}
                             body={ad.body}
                             tags={ad.tags}
+                            vendorUrl={ad.vendor_url}
+                            vendorName={ad.vendor_name}
                             imageUrl={ad.image_url}
                             isSaved={this.props.userAds.indexOf(ad._id) !== -1}
                             toggleSaved={() => {
@@ -51,7 +52,6 @@ class AdsList extends Component {
                                 axios.post(API_URL +"/click/"+USER_ID, {
                                     ad_id: ad._id
                                 })
-                                console.log("clicked")
                             }}
                         />
                     })}
