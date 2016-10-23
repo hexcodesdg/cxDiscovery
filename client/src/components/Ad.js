@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card, CardMedia, CardTitle, CardActions, CardText} from 'material-ui/Card'
+import {Card, CardMedia, CardTitle, CardActions, CardText, CardHeader} from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import TurnedIn from 'material-ui/svg-icons/action/turned-in'
@@ -44,6 +44,12 @@ export default class Ad extends Component {
                 <div>
                     <Card
                         initiallyExpanded={true}>
+                        {this.props.vendor_url && this.props.vendor_name &&
+                            <CardHeader
+                                title={this.props.vendor_name}
+                                avatar={this.props.vendor_url}
+                                />
+                        }
                         <CardMedia onClick={() => {
                                 this.setState({
                                     modalVisible: true
@@ -80,10 +86,10 @@ export default class Ad extends Component {
                       open={this.state.modalVisible}
                       autoScrollBodyContent={true}
                     >
-                            <Cell is="middle 6">
-                                <img style={imageStyle} src={this.props.imageUrl}/>
-                            </Cell>
-                              {this.props.body}
+                        <Cell is="middle 6">
+                            <img style={imageStyle} src={this.props.imageUrl}/>
+                        </Cell>
+                          {this.props.body}
                     </Dialog>
                 </div>
             </Row>
