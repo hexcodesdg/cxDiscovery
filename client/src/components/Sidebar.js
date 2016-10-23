@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import Drawer from 'material-ui/Drawer'
 import { connect } from 'react-redux'
-import IconButton from 'material-ui/IconButton'
 import MenuItem from 'material-ui/MenuItem'
 import Clear from 'material-ui/svg-icons/content/clear'
 import { toggleDrawer, toggleTagSelector } from '../actions/ui'
 import { hideSavedAds, showSavedAds} from '../actions/ads'
 import TagsList from './TagsList'
-import Paper from 'material-ui/Paper'
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 import Divider from 'material-ui/Divider';
 import TurnedIn from 'material-ui/svg-icons/action/turned-in'

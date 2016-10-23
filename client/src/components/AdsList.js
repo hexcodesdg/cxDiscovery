@@ -20,12 +20,12 @@ class AdsList extends Component {
     render() {
         // filters out ads by currentTags
         let renderedAds = this.props.ads
-        console.log(this.props.userAds)
         if (this.props.savedAdsShown) {
             renderedAds = this.props.ads.filter(ad => {
                 return this.props.userAds.indexOf(ad._id) !== -1
             })
         } else if (this.props.currentTags.length > 0) {
+            console.log(this.props.currentTags)
             renderedAds = this.props.ads.filter(ad => {
                 for (let i = 0; i < ad.tags.length; i++) {
                     const tag = ad.tags[i]

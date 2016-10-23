@@ -4,10 +4,9 @@ import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import TurnedIn from 'material-ui/svg-icons/action/turned-in'
 import TurnedInNot from 'material-ui/svg-icons/action/turned-in-not'
-import { Grid, Row, Cell } from 'react-inline-grid'
 import Dialog from 'material-ui/Dialog'
 import Chip from 'material-ui/Chip'
-import {lime800} from 'material-ui/styles/colors'
+import { Row } from 'react-inline-grid'
 import '../index.css'
 
 export default class Ad extends Component {
@@ -41,7 +40,6 @@ export default class Ad extends Component {
         const imageStyle = {maxWidth: "600px", minWidth:"400px", margin: "auto", display: "block", cursor:"pointer"}
         const cardTitleStyle = {paddingBottom: 0, cursor:"pointer", maxWidth: "90%", display: "inline-flex", wordBreak: "break-word"}
         const cardTextStyle = {paddingTop: 0, fontStyle: 'Italic', color: 'rgba(125, 122, 122, 0.870588)', fontSize:"14px", cursor:"pointer"}
-        const tagStyle = {maxWidth: "600px", minWidth:"300px", cursor:"pointer"}
         const actions = <div>
                           <IconButton style={{float:"left"}} iconStyle={{color:"#C1b49a"}} onClick={this.props.toggleSaved}>
                                 {this.props.isSaved ?
@@ -69,7 +67,7 @@ export default class Ad extends Component {
                                 })
                                 this.props.handleClick()
                         }}>
-                            <img style={imageStyle} src={this.props.imageUrl}/>
+                            <img style={imageStyle} src={this.props.imageUrl} role="presentation"/>
                         </CardMedia>
                         <div style={{display: "inline-block", width: "100%"}}>
                           <CardTitle style={cardTitleStyle} title={this.props.title}/>
@@ -103,7 +101,7 @@ export default class Ad extends Component {
                     >
                         <div style={{maxWidth: "600px"}}>
                           <br />
-                          <img style={imageStyle} src={this.props.imageUrl}/>
+                          <img style={imageStyle} src={this.props.imageUrl} role="presentation"/>
                           <br />
                           <div style={{padding: "5px"}}>
                             {this.props.body}
