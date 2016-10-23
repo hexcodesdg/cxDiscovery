@@ -42,6 +42,8 @@ class AdsList extends Component {
                             title={ad.title}
                             body={ad.body}
                             tags={ad.tags}
+                            vendorUrl={ad.vendor_url}
+                            venorName={ad.vendor_name}
                             imageUrl={ad.image_url}
                             isSaved={this.props.userAds.indexOf(ad._id) !== -1}
                             toggleSaved={() => {

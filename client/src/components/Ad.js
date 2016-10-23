@@ -46,8 +46,8 @@ export default class Ad extends Component {
                         initiallyExpanded={true}>
                         {this.props.vendor_url && this.props.vendor_name &&
                             <CardHeader
-                                title={this.props.vendor_name}
-                                avatar={this.props.vendor_url}
+                                title={this.props.vendorName}
+                                avatar={this.props.vendorUrl}
                                 />
                         }
                         <CardMedia onClick={() => {
