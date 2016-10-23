@@ -38,6 +38,8 @@ export default class Ad extends Component {
     render() {
         const imageStyle = {maxWidth: "600px", minWidth:"400px", margin: "auto", display: "block"}
         const actions = <FlatButton primary={true} label="Close" onTouchTap={this.onModalClose}/>
+        if (this.props.vendorUrl)
+            console.log(this.props)
 
         return (
             <Row is="center">
