@@ -10,6 +10,7 @@ export default class TagSelectorItem extends Component {
 
         return (
             <GridTile
+                titlePosition="top"
                 title={this.props.title}
                 actionIcon={<IconButton onClick={this.props.handleClick}>
                     {this.props.toggled ?

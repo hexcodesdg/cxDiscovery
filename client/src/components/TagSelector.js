@@ -7,6 +7,19 @@ import {GridList} from 'material-ui/GridList'
 import { connect } from 'react-redux'
 import TagSelectorItem from './TagSelectorItem'
 
+// const tagMap = {
+//     "Featured products":,
+//     "Travel":
+//     "Gourmet and Wine":
+//     "Entertainment and Events":
+//     "Electronics and Accessories":
+//     "Beauty, Health and Personal Care":
+//     "Fashion, Apparel and Sports":
+//     "Home and Kids":
+//     "Gift Cards and Miles Conversion":
+//     "Social Goods":
+// }
+
 const tagList = ['Featured products', 'Travel', 'Gourmet and Wine', 'Entertainment and Events', 'Electronics and Accessories',
                   'Beauty, Health and Personal Care', 'Fashion, Apparel and Sports', 'Home and Kids',
                   'Gift Cards and Miles Conversion', 'Social Goods'
@@ -36,7 +49,7 @@ class TagSelector extends Component {
                 open={this.props.open}
                 actions={actions}
             >
-                <GridList>
+                <GridList style={{display: "flex", justifyContent: "center"}}>
                     {tagList.map((tag, index) => {
                         return <TagSelectorItem
                                 key={index}

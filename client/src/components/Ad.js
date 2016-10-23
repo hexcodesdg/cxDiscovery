@@ -59,7 +59,7 @@ export default class Ad extends Component {
                         <CardActions>
                                 <Row>
                                     {this.props.tags.map(tag => {
-                                        return <Chip>{tag}</Chip>
+                                        return <Chip style={{borderRadius: 0}}>{tag}</Chip>
                                     })}
                                 </Row>
                                 <IconButton onClick={this.props.toggleSaved}>
@@ -80,10 +80,10 @@ export default class Ad extends Component {
                       open={this.state.modalVisible}
                       autoScrollBodyContent={true}
                     >
-                        <Cell is="middle 6">
-                            <img style={imageStyle} src={this.props.imageUrl}/>
-                        </Cell>
-                          {this.props.body}
+                            <Cell is="middle 6">
+                                <img style={imageStyle} src={this.props.imageUrl}/>
+                            </Cell>
+                              {this.props.body}
                     </Dialog>
                 </div>
             </Row>
