@@ -7,6 +7,7 @@ import TurnedInNot from 'material-ui/svg-icons/action/turned-in-not'
 import Dialog from 'material-ui/Dialog'
 import Chip from 'material-ui/Chip'
 import { Row } from 'react-inline-grid'
+import Video from 'react-youtube'
 import '../index.css'
 
 export default class Ad extends Component {
@@ -67,7 +68,11 @@ export default class Ad extends Component {
                                 })
                                 this.props.handleClick()
                         }}>
-                            <img style={imageStyle} src={this.props.imageUrl} role="presentation"/>
+                            {this.props.videoId ?
+                                <Video videoId={this.props.videoId}/>
+                            :
+                                <img style={imageStyle} src={this.props.imageUrl} role="presentation"/>
+                            }
                         </CardMedia>
                         <div style={{display: "inline-block", width: "100%"}}>
                           <CardTitle style={cardTitleStyle} title={this.props.title}/>

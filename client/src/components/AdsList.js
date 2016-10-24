@@ -25,7 +25,7 @@ class AdsList extends Component {
                 return this.props.userAds.indexOf(ad._id) !== -1
             })
         } else if (this.props.currentTags.length > 0) {
-            console.log(this.props.currentTags)
+            // console.log(this.props.currentTags)
             renderedAds = this.props.ads.filter(ad => {
                 for (let i = 0; i < ad.tags.length; i++) {
                     const tag = ad.tags[i]
@@ -41,6 +41,7 @@ class AdsList extends Component {
             <Grid>
                 <div>
                     {renderedAds.map(ad => {
+                        console.log(ad)
                         return <Ad
                             key={ad._id}
                             title={ad.title}
@@ -49,6 +50,7 @@ class AdsList extends Component {
                             vendorUrl={ad.vendor_url}
                             vendorName={ad.vendor_name}
                             imageUrl={ad.image_url}
+                            videoId={ad.video_id}
                             isSaved={this.props.userAds.indexOf(ad._id) !== -1}
                             toggleSaved={() => {
                                 this.props.toggleAdSave(ad._id)

@@ -5,11 +5,13 @@ const server = http.createServer(app)
 const bodyparser = require("body-parser")
 const dotenv = require("dotenv")
 const mongoose = require("mongoose")
+const cors = require("cors")
 dotenv.config()
 
 /**
  * Middleware
  */
+app.use(cors())
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(function(req, res, next) {

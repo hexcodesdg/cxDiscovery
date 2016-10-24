@@ -9,6 +9,7 @@ const AdSchema = new mongoose.Schema({
     tags: {type: [String], enum: tagConstants, required: true},
     vendor_url: {type: String},
     vendor_name: {type: String},
+    video_id: {type: String},
     reward: {type: String}
 });
 
